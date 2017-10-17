@@ -23,12 +23,16 @@ matrix:
 install:
   - ps: Install-Product node $env:NODE_VERSION $env:PLATFORM
   - npm install -g npm@5.5.1
+  - npm install
 
 build_script:
-  - npm run dist:win
+  - npm run pack
+  - mocha test/app/index.test.main.js
 
 test_script:
-  - npm test && mocha test/app/index.test.main.js
+  - node --version
+  - npm --version
+  - npm test
 
 deploy: off
 
