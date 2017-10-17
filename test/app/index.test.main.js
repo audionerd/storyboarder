@@ -4,6 +4,7 @@
 const Application = require('spectron').Application
 const assert = require('assert')
 const os = require('os')
+const path = require('path')
 const { ipcRenderer } = require('electron')
 
 const getAppArgs = () => {
@@ -17,12 +18,12 @@ const getAppArgs = () => {
   switch (os.platform()) {
     case 'darwin':
       return {
-        path: './dist/mac/Storyboarder.app/Contents/MacOS/Storyboarder'
+        path: path.join('dist', 'mac', 'Storyboarder.app', 'Contents', 'MacOS', 'Storyboarder')
       }
       break
     case 'win32':
       return {
-        path: './dist/win-unpacked/Storyboarder.exe'
+        path: path.join('dist', 'win-unpacked', 'Storyboarder.exe')
       }
       break
     case 'linux':
@@ -39,10 +40,12 @@ describe('application', function () {
   this.timeout(10000)
 
   beforeEach(function () {
-    this.app = new Application({
+    let opts = {
       env: { RUNNING_IN_SPECTRON: '1' },
       ...getAppArgs()
-    })
+    }
+    console.log('Starting Spectron with opts', opts)
+    this.app = new Application(opts)
     return this.app.start()
   })
 
