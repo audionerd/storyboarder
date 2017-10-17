@@ -1,14 +1,18 @@
-image: Visual Studio 2015
+# see: https://github.com/electron/spectron/blob/master/appveyor.yml
+
+build: off
+
+os: unstable
+
+platform:
+  - x64
+  - x86
 
 version: "{build}"
 
 skip_tags: true
 clone_folder: c:\projects\storyboarder
 clone_depth: 10
-
-platform:
-  - x64
-  - x86
 
 environment:
   global:
@@ -27,16 +31,16 @@ install:
   - npm install
   - npm install 7zip-bin-win
 
-build_script:
-  - npm run pack
-
 test_script:
   - node --version
   - npm --version
   - npm test
+  # build the binary so we can test it
+  - npm run pack
   - node ./node_modules/mocha/bin/mocha test/app/index.test.main.js
 
 deploy: off
 
 cache:
   - '%APPVEYOR_BUILD_FOLDER%\electron'
+  - node_modules -> package.json
