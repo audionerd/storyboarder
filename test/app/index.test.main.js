@@ -28,7 +28,7 @@ const getAppArgs = () => {
       break
     case 'linux':
       return {
-        path: './dist/linux-unpacked/storyboarder'
+        path: path.join('dist', 'linux-unpacked', 'storyboarder')
       }
       break
     default:

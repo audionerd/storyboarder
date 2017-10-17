@@ -37,7 +37,7 @@ test_script:
   - npm test
   # build the binary so we can test it
   - npm run pack
-  - tree /f
+  - tree /f dist
   - node ./node_modules/mocha/bin/mocha test/app/index.test.main.js
 
 deploy: off
