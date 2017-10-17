@@ -34,7 +34,7 @@ test_script:
   - node --version
   - npm --version
   - npm test
-  - node_modules/mocha/bin/mocha test/app/index.test.main.js
+  - node ./node_modules/mocha/bin/mocha test/app/index.test.main.js
 
 deploy: off
 
