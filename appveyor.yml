@@ -22,13 +22,14 @@ matrix:
 
 install:
   - ps: Install-Product node $env:NODE_VERSION $env:PLATFORM
+  # use 4.6.1 because: https://github.com/npm/npm/issues/17747
   - npm install -g npm@4.6.1
   - npm install
   - npm install 7zip-bin-win
 
 build_script:
   - npm run pack
-  - mocha test/app/index.test.main.js
+  - node_modules/mocha/bin/mocha test/app/index.test.main.js
 
 test_script:
   - node --version
