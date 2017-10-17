@@ -22,7 +22,7 @@ matrix:
 
 install:
   - ps: Install-Product node $env:NODE_VERSION $env:PLATFORM
-  - npm install -g npm@5.5.1
+  - npm install -g npm@4.6.1
   - npm install
   - npm install 7zip-bin-win
 
