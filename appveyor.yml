@@ -37,6 +37,7 @@ test_script:
   - npm test
   # build the binary so we can test it
   - npm run pack
+  - tree /f
   - node ./node_modules/mocha/bin/mocha test/app/index.test.main.js
 
 deploy: off
@@ -44,3 +45,5 @@ deploy: off
 cache:
   - '%APPVEYOR_BUILD_FOLDER%\electron'
   - node_modules -> package.json
+  - '%LOCALAPPDATA%\electron\Cache'
+  - '%LOCALAPPDATA%\electron-builder\cache'
